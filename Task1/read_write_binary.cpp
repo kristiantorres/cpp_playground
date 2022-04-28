@@ -1,4 +1,8 @@
+#include <iostream>             //standard input and output
+#include <fstream>              //for reading and writing binary files
 #include "read_write_binary.h"
+
+using namespace std;    //to avoid writing std::cout, std::endl, etc. 
 
 BinaryData::BinaryData(int data_size){
     // Define size of i/o array

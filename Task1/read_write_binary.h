@@ -5,12 +5,6 @@ __version__ = 2022/04/26 21:40:09
 
 //TODO generalize for !float and change data_size for num_elements or lenght
 */
-
-#include<iostream>      //standard input and output
-#include<fstream>       //for reading and writing binary files
-
-using namespace std;    //to avoid writing std::cout, std::endl, etc. 
-
 class BinaryData{
     private:
         // All files have a specific data size
@@ -18,7 +12,7 @@ class BinaryData{
     
     public:       
         // All files have a specific file name
-        string file_name;  // defined within ReadBinary or WriteBinary   
+        string file_name;  // defined within read_binary or write_binary   
         
         // Constructor
         BinaryData(int data_size);

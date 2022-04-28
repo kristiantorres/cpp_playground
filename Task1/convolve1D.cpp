@@ -12,4 +12,6 @@ int main(){
     BinaryData input_bin(100);
 
     input_bin.read_binary("/home/torresba/cpp_playground/Task1/wavelet_100_float32.bin");
+    
+    return 0;
 }
