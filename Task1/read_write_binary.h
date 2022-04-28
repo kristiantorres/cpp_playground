@@ -5,6 +5,8 @@ __version__ = 2022/04/26 21:40:09
 
 //TODO generalize for !float and change data_size for num_elements or lenght
 */
+#include <string>
+
 class BinaryData{
     private:
         // All files have a specific data size
@@ -12,7 +14,7 @@ class BinaryData{
     
     public:       
         // All files have a specific file name
-        string file_name;  // defined within read_binary or write_binary   
+        std::string file_name;  // defined within read_binary or write_binary   
         
         // Constructor
         BinaryData(int data_size);
@@ -22,8 +24,8 @@ class BinaryData{
         int get_data_size();
 
         // Read array
-        void read_binary(string input_file_name);
+        void read_binary(std::string input_file_name);
         
         // Write array
-        void write_binary(string output_file_nameFile);   
+        void write_binary(std::string output_file_name);   
 };

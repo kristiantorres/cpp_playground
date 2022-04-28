@@ -8,8 +8,8 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				//"${fileDirname}/*.cpp", //to compile all .cpp files in same pwd
-				"${file}",
+				"${fileDirname}/*.cpp", //to compile all .cpp files in same pwd
+				//"${file}",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],
