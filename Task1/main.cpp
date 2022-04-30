@@ -17,15 +17,30 @@ __version__ = 2022/04/26 16:44:34
 
 using namespace std;
 
+// float *convolve1d(){
+    
+//     return 
+//     }
+
 int main(){
+    // Number of elements in array wavelet
+    int wave_n = 100; 
+    // Number of elements in array reflecitvity
+    int ref_n = 1000; 
+    // Number of elements in array trace
+    int trace_n = wave_n + ref_n - 1;
 
-    int wave_n = 100, ref_n = 1000;
-
+    // Instance initialization
     BinaryData wavelet(wave_n);
     BinaryData reflectivity(ref_n);
+    BinaryData trace(wave_n + ref_n - 1);
     
+    // Reading input data
     wavelet.read_binary("/home/torresba/cpp_playground/Task1/wavelet_100_float32.bin");
     reflectivity.read_binary("/home/torresba/cpp_playground/Task1/reflectivity_1000_float32.bin");
-    
+
+    // Generate 1D trace with convolutional model
+
+
     return 0;
 }
