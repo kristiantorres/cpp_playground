@@ -62,6 +62,8 @@ void convolve1d(float* array1, int n1, float* array2, int n2){
 
     // write result to binary
     float2binary("result.bin", result, n);
+
+    cout << "Trace of " << n << "samples stored in result.bin." << endl;
 }
 
 int main(){
@@ -79,5 +81,7 @@ int main(){
 
     convolve1d(wavelet, n1, reflectivity, n2);
 
+    cout << "Program finished." << endl;
+    
     return 0;
 }

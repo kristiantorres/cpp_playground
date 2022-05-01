@@ -11,7 +11,7 @@ __version__ = 2022/04/26 21:40:09
 class BinaryData{      
     public:
         int _data_size;
-        std::unique_ptr<float[]> data;
+        std::unique_ptr<float[]> data; //unique_ptr deletes array automatically, so no need for delete[]
         
         // Constructor
         BinaryData(int data_size);

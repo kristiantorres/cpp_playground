@@ -1,13 +1,17 @@
+
 #include <iostream>             //standard input and output
 #include <fstream>              //for reading and writing binary files
 #include "read_write_binary.h"
 
 using namespace std;            //to avoid writing std::cout, std::endl, etc. 
 
+// Empty constructor, just to make use of member initializer list 
 BinaryData::BinaryData(int data_size)
 : _data_size{data_size}, data{new float[_data_size]} //memory initialization
 {} 
 
+// TODO, this creates a temporary array tmp, reads binary data, and then copies elemnts into data array.
+// This is not ideal, I would like to know read directly into data wihtin this function.
 void BinaryData::read_binary(string inFile){
     float tmp[_data_size];
     
@@ -16,6 +20,7 @@ void BinaryData::read_binary(string inFile){
     is.read(reinterpret_cast<char*>(&tmp), _data_size);
     is.close();
 
+    // Copy to data array
     for (int i=0; i<_data_size; i++){
         data[i] = tmp[i];
     }

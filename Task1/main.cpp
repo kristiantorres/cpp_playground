@@ -17,10 +17,20 @@ __version__ = 2022/04/26 16:44:34
 
 using namespace std;
 
-// float *convolve1d(){
+// returning a pointer to an array of floats
+float* convolve1d(float* array1, int n1, float* array2, int n2){
+    int i, j;
+    float result[n1+n2-1];
     
-//     return 
-//     }
+    cout << "Calculating convolution of size " << n1 << "+" << n2 << "-1=" << n1+n2-1<< endl;
+
+    for (i=0; i<n1; i++){
+        for (j=0; j<n2; j++){
+            result[i+j] = result[i+j] + array1[i]*array2[j];
+        }
+    }
+    return result;
+}
 
 int main(){
     // Number of elements in array wavelet
@@ -38,9 +48,9 @@ int main(){
     // Reading input data
     wavelet.read_binary("/home/torresba/cpp_playground/Task1/wavelet_100_float32.bin");
     reflectivity.read_binary("/home/torresba/cpp_playground/Task1/reflectivity_1000_float32.bin");
-
+    
     // Generate 1D trace with convolutional model
-
+    float *trace = convolve1d(wavelet.data, wave_n, reflectivity.data, ref_n);
 
     return 0;
 }

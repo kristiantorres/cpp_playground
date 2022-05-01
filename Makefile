@@ -1,3 +1,11 @@
-all:
-    +$(MAKE) -C Task1
-    
+SUBDIRS := $(wildcard */.)
+
+.PHONY: all $(SUBDIRS) clean
+
+all: $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+clean:
+	$(MAKE) -C $(SUBDIRS) clean
