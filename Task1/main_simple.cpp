@@ -12,17 +12,12 @@ using namespace std;
 // }
 
 void binary2float(string file_name, float* array, int n){
-    int i;
-    float tmp[n] = {0.};
-
+    
     std::ifstream file(file_name, ios::binary);
+    
     if (file.is_open()) {
-        file.read((char * ) & tmp, sizeof(tmp));     
-        
-        for (i=0; i<n; i++){
-            array[i] = tmp[i];
-        } 
-
+        // read needs &array to "deposit" (char *), but here array is already and address of the first element of the outside-defined array.
+        file.read((char * ) array, n*sizeof(float));      
         file.close();
     }
     else
@@ -30,16 +25,9 @@ void binary2float(string file_name, float* array, int n){
 }
 
 void float2binary(string file_name, float* array, int n){
-    int i;
-    float tmp[n] = {0.};
-    
-    for (i=0; i<n; i++){
-            tmp[i] = array[i];
-        } 
-    
     std::ofstream file(file_name, ios::binary);
     if (file.is_open()) {
-        file.write((char * ) & tmp, sizeof(tmp));     
+        file.write((char * ) array, n*sizeof(float));     
         file.close();
     }
     else
@@ -76,9 +64,9 @@ int main(){
     
     // Read input files into wavelets and reflectivity arrays
     binary2float("wavelet_100_float32.bin", wavelet, n1);
-    binary2float("/home/torresba/cpp_playground/Task1/reflectivity_1000_float32.bin", reflectivity, n2);
+    binary2float("reflectivity_1000_float32.bin", reflectivity, n2);
     
-
+    // Calculate convolution. Also write result into a binary file.
     convolve1d(wavelet, n1, reflectivity, n2);
 
     cout << "Program finished." << endl;
