@@ -1,4 +1,4 @@
-`/* Class for reading and writing binary files into float arrays.
+/* Class for reading and writing binary files into float arrays.
 
 __author__ = Kristian Torres
 __version__ = 2022/04/26 21:40:09

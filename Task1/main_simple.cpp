@@ -29,18 +29,19 @@ void float2binary(string file_name, float* array, int n){
     if (file.is_open()) {
         file.write((char * ) array, n*sizeof(float));     
         file.close();
+        cout << "Array of " << n << " samples stored in " << file_name << endl;
     }
     else
         cout << "Error! File cannot be opened!" << endl;        
 }
 
 //float * convolve1d(float* array1, int n1, float* array2, int n2){
-void convolve1d(float* array1, int n1, float* array2, int n2){
+float * convolve1d(float* array1, int n1, float* array2, int n2){
     int i, j;
     int n = n1 + n2 -1;
 
     // declare & initialize result array to zero! This is crucial to avoid weird outputs.
-    float result[n] = {0};
+    static float *result = new float[n] {0.};
 
     for (i=0; i<n1; i++){
         for (j=0; j<n2; j++){
@@ -48,10 +49,7 @@ void convolve1d(float* array1, int n1, float* array2, int n2){
         }
     }
 
-    // write result to binary
-    float2binary("result.bin", result, n);
-
-    cout << "Trace of " << n << "samples stored in result.bin." << endl;
+    return result;
 }
 
 int main(){
@@ -66,10 +64,16 @@ int main(){
     binary2float("wavelet_100_float32.bin", wavelet, n1);
     binary2float("reflectivity_1000_float32.bin", reflectivity, n2);
     
-    // Calculate convolution. Also write result into a binary file.
-    convolve1d(wavelet, n1, reflectivity, n2);
+    // Calculate convolution.
+    float* trace = convolve1d(wavelet, n1, reflectivity, n2);
+    
+    // Write result into a binary file.
+    float2binary("result.bin", trace, n1+n2-1);
 
-    cout << "Program finished." << endl;
+    // Free memory
+    delete[] trace;
+
+    cout << "Program finished" << endl;
     
     return 0;
 }

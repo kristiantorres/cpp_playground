@@ -50,7 +50,7 @@ int main(){
     reflectivity.read_binary("/home/torresba/cpp_playground/Task1/reflectivity_1000_float32.bin");
     
     // Generate 1D trace with convolutional model
-    float *trace = convolve1d(wavelet.data, wave_n, reflectivity.data, ref_n);
+    *float *trace = convolve1d(wavelet.data, wave_n, reflectivity.data, ref_n);
 
     return 0;
 }
